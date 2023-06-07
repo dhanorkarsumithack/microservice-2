@@ -17,6 +17,8 @@ public class PaymentService {
     public Payment doPayment(Payment payment){
         payment.setPaymentStatus(paymentProcessing());
         payment.setTransactionId(UUID.randomUUID().toString());
+
+        System.out.println("PaymentService.doPayment request {} "+payment);
         return repository.save(payment);
     }
 
@@ -27,6 +29,7 @@ public class PaymentService {
 
 
     public Payment findByPaymentHistoryByOrderId(int orderId) {
+        System.out.println("PaymentService.findByPaymentHistoryByOrderId {} "+repository.findByOrderId(orderId));
         return  repository.findByOrderId(orderId);
     }
 }
